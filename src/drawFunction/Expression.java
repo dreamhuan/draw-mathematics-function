@@ -95,14 +95,14 @@ class Expression {// 0-9 + - * / % ^ F ( )   （F(x)为单参数常用数学函�
                 if (top > -1) {
                     int opTop = operatorType(op[top].charAt(0)); //如果是函数或者括号，都会返回0
                     if (isAlpha(op[top].charAt(0))) //如果是函数，优先级提到最大
-                        opTop = 3;
+                        opTop = 4;
                     while (opTop >= now) {//操作符栈顶元素优先级大于等于当前操作符
                         output[pos++] = op[top--];
                         if (top == -1 || op[top].charAt(0) == '(') //栈空或者遇到左括号跳出
                             break;
                         opTop = operatorType(op[top].charAt(0));
                         if (isAlpha(op[top].charAt(0)))
-                            opTop = 3;
+                            opTop = 4;
                     }
                 }
                 
