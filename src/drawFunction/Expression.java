@@ -67,7 +67,7 @@ class Expression {// 0-9 + - * / % ^ F ( )   （F(x)为单参数常用数学函�
         for (int i = 0; i < expression.length(); i++) {
             if (isNum(expression.charAt(i)) || expression.charAt(i) == '.' 
                     || (i > 0 && expression.charAt(i - 1) == '(' && expression.charAt(i) == '-')
-                    && (expression.charAt(i + 1) == 'x' || expression.charAt(i + 1) == 'X')) {//数字(小数或者负数)
+                    && !(expression.charAt(i + 1) == 'x' || expression.charAt(i + 1) == 'X')) {//数字(小数或者负数)
                 lenNum++;
 
                 //说明前面是字母，这个不是字母，就把完整函数名存进output数组，并把len设为0

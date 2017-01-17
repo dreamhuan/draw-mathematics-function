@@ -42,16 +42,6 @@ class Function extends AbstractDrawFunction {
      * 
      */
     private static final long serialVersionUID = 1L;
-
-    private String expression = new String();
-    
-    public String getExpression() {
-        return expression;
-    }
-    
-    public void setExpression(String expression) {
-        this.expression = expression;
-    }
     
     @Override
     protected double f(double x) {

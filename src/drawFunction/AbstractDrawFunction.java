@@ -17,6 +17,16 @@ public abstract class AbstractDrawFunction extends JPanel {
      */
     private static final long serialVersionUID = 1L;
     
+    protected String expression = new String();
+    
+    public String getExpression() {
+        return expression;
+    }
+    
+    public void setExpression(String expression) {
+        this.expression = expression;
+    }
+    
     //原点的坐标
     private int Ox = 0;
     private int Oy = 0;
@@ -105,10 +115,12 @@ public abstract class AbstractDrawFunction extends JPanel {
 //        }
         double dis = 50.0; //每50像素显示一个下标
         for (double i = dis/rate; i <= (-Ox+getWidth())*1.0/rate; i += dis/rate) {
-            g.drawString(String.format("%.2f", i), Ox + (int)(i * rate), Oy);
+            g.fillArc(Ox + (int)(i * rate)-1, Oy-3, 3, 3, 0, 360);
+            g.drawString(String.format("%.2f", i), Ox + (int)(i * rate)-12, Oy+12);
         }
         for (double i = -dis/rate; i >= -Ox*1.0/rate; i -= dis/rate) {
-            g.drawString(String.format("%.2f", i), Ox + (int)(i * rate), Oy);
+            g.fillArc(Ox + (int)(i * rate)-2, Oy-3, 3, 3, 0, 360);
+            g.drawString(String.format("%.2f", i), Ox + (int)(i * rate)-18, Oy+12);
         }
         
         //y轴
@@ -121,10 +133,12 @@ public abstract class AbstractDrawFunction extends JPanel {
 //            g.drawString(-i + "", Ox, Oy + i * rate);
 //        }
         for (double i = dis/rate; i <= (-Oy+getHeight())*1.0/rate; i += dis/rate) {
-            g.drawString(String.format("%.2f", i), Ox, Oy + (int)(i * rate));
+            g.fillArc(Ox-3, Oy + (int)(i * rate)-2, 3, 3, 0, 360);
+            g.drawString(String.format("%.2f", -i), Ox+3, Oy + (int)(i * rate)+5);
         }
         for (double i = -dis/rate; i >= -Oy*1.0/rate; i -= dis/rate) {
-            g.drawString(String.format("%.2f", i), Ox, Oy + (int)(i * rate));
+            g.fillArc(Ox-3, Oy + (int)(i * rate)-1, 3, 3, 0, 360);
+            g.drawString(String.format("%.2f", -i), Ox+3, Oy + (int)(i * rate)+5);
         }
         
         //原点     
@@ -155,6 +169,7 @@ public abstract class AbstractDrawFunction extends JPanel {
                 (mouthX-Ox)*1.0/rate, (Oy-mouthY)*1.0/rate), 0, 40);
         g.drawString("点的个数: "+p.npoints, 0, 55);
         g.drawString("比率(像素:单位): "+rate, 0, 70);
+        g.drawString("输入函数 f(x) = " + expression, 0, 100);
     }
     
 }
